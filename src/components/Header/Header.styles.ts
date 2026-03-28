@@ -1,4 +1,7 @@
-.header {
+import styled from "styled-components";
+import { NavLink } from 'react-router-dom';
+
+export const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
   right: 0;
@@ -7,23 +10,20 @@
   background-color: #4682b4;
   display: flex;
   align-items: center;
-}
+`;
 
-.container {
+export const Container = styled.div`
   max-width: 97%;
   width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+`;
 
-.link {
+export const StyledNavLink = styled(NavLink)<{ $active?: boolean }>`
   text-decoration: none;
   padding: 10px;
   color: #fff;
-}
-
-.active {
-  color: #ffffff33;
-}
+  ${({ $active }) => $active && 'color: #ffffff33;'}
+`;
