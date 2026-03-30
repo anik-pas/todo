@@ -19,6 +19,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
 export const StyledNavLink = styled(NavLink)<{ $active?: boolean }>`
@@ -26,4 +27,11 @@ export const StyledNavLink = styled(NavLink)<{ $active?: boolean }>`
   padding: 10px;
   color: #fff;
   ${({ $active }) => $active && 'color: #ffffff33;'}
+`;
+
+export const ToggleButton = styled.button`
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 `;

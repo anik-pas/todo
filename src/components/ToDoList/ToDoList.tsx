@@ -7,11 +7,11 @@ export const ToDoList = (props: { todos: Todo[], updateToDo: Function, deleteTod
   const checkedList = () => {
     return props.todos
       .filter((item) => !item.isDone)
-      .map((item, idx) => {
+      .map((item) => {
         return (
           <ToDoListItem
             toDoItem={item}
-            key={idx}
+            key={item.id}
             updateToDo={props.updateToDo}
             deleteTodo={props.deleteTodo}
           />
@@ -22,11 +22,11 @@ export const ToDoList = (props: { todos: Todo[], updateToDo: Function, deleteTod
   const uncheckedList = () => {
     return props.todos
       .filter((item) => item.isDone)
-      .map((item, idx) => {
+      .map((item) => {
         return (
           <ToDoListItem
             toDoItem={item}
-            key={idx}
+            key={item.id}
             updateToDo={props.updateToDo}
             deleteTodo={props.deleteTodo}
           />
