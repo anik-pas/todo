@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        path: 'todo',
+        path: '',
         element: <ToDoListPage />
       },
       {
