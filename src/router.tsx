@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'list',
-        element: <ViewList />,
+        element: <ViewList />
       },
       {
         path: 'list/:id',
@@ -29,4 +29,4 @@ export const router = createBrowserRouter([
     path: '*',
     element: <NotFound />
   }
-], { basename: '/todo/' })
+], { basename: '/todo' });
