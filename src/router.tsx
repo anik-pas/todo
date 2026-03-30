@@ -12,15 +12,15 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        path: '/',
+        path: 'todo',
         element: <ToDoListPage />
       },
       {
-        path: '/list',
+        path: 'list',
         element: <ViewList />,
       },
       {
-        path: '/list/:id',
+        path: 'list/:id',
         element: <ViewListItem />
       }
     ]
@@ -29,4 +29,4 @@ export const router = createBrowserRouter([
     path: '*',
     element: <NotFound />
   }
-] /*, { basename: '/app/' }*/)
+], { basename: '/app/' })
