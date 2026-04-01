@@ -1,31 +1,40 @@
 import { useState } from 'react'
-import { FormBlock, FormControl, FormField, FormLabel, FormWrapper } from './Form.slyle'
+import { FormControl, FormField, FormInput, FormLabel, FormWrapper } from './Form.styled'
 
 import plusIcon from '../../assets/images/plus.png'
 
-export const Form = (props: { createNewToDo: Function }) => {
-  const [text, setText] = useState<string>('')
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState } from '../../store'
+import { createAction } from '../../feature/todoList'
+import { clearValue, setValue } from '../../feature/formSlice'
+
+export const Form = () => {
+  const dispatch = useDispatch()
+  const task = useSelector((state: RootState) => state.form.value)
 
   const formSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault()
-    if (text) {
-      props.createNewToDo(text)
-      setText('')
+    if (task) {
+      dispatch(createAction(task))
+      dispatch(clearValue())
     }
   }
 
   return (
-    <FormWrapper>
-      <FormBlock action="#" onSubmit={formSubmit}>
-        <FormLabel>
-          <FormField
-            value={text}
-            type="text"
-            onChange={(event) => setText(event.target.value)}
-          />
-          <FormControl icon={plusIcon} />
-        </FormLabel>
-      </FormBlock>
-    </FormWrapper>
+    <FormField action="#" onSubmit={formSubmit}>
+      <FormLabel>
+        <FormInput
+          type="text"
+          value={task}
+          onChange={(event) => dispatch(setValue(event.target.value))}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              formSubmit(event);
+            }
+          }}
+        />
+        <FormControl $icon={plusIcon} />
+      </FormLabel>
+    </FormField>
   )
 }
