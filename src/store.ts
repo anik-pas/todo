@@ -1,19 +1,20 @@
-import { configureStore } from '@reduxjs/toolkit'
-import todoReducer from './feature/todoList'
-import formReducer from './feature/formSlice'
-import themeReducer from './feature/themeList'
-import { loadFromLocalStorage, saveToLocalStorage } from './helpers/storage'
+import { configureStore } from '@reduxjs/toolkit';
+import todosReducer from './feature/todoList';
+import formReducer from './feature/formSlice';
+import themeReducer from './feature/themeSlice';
+import { loadFromLocalStorage, saveToLocalStorage } from './helpers/storage';
+
 
 export const store = configureStore({
-  reducer: {
-    todoList: todoReducer,
+	reducer: {
+		todoList: todosReducer,
     form: formReducer,
-    themeList: themeReducer
-  },
-  preloadedState: loadFromLocalStorage() as { todoList: { todos: [] } } | undefined
-})
+		themeList: themeReducer
+	},
+	preloadedState: loadFromLocalStorage(),
+});
 
-store.subscribe(() => saveToLocalStorage(store.getState()))
+store.subscribe(() => saveToLocalStorage(store.getState()));
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

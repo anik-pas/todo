@@ -1,8 +1,8 @@
 import { ToDoListItem } from "./ToDoListItem/ToDoListItem"
-import { TodoContainer, TodoList } from "./ToDoList.styles"
-import { Todo } from "../../models/todo-item"
+import { TodoContainer, TodoList } from "./ToDoList.styled"
+import { ToDo } from "../../models/todo-item.interface.tsx"
 
-export const ToDoList = (props: { todos: Todo[], updateToDo: Function, deleteTodo: Function }) => {
+export const ToDoList = (props: { todos: ToDo[], updateToDo: Function, deleteTodo: Function }) => {
 
   const checkedList = () => {
     return props.todos
@@ -44,4 +44,4 @@ export const ToDoList = (props: { todos: Todo[], updateToDo: Function, deleteTod
       </TodoList>
     </TodoContainer>
   )
-}
+};

@@ -1,40 +1,44 @@
-import { useState } from 'react'
-import { FormControl, FormField, FormInput, FormLabel, FormWrapper } from './Form.styled'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../store';
+import { createAction } from '../../feature/todoList';
+import { clearValue, setValue } from '../../feature/formSlice';
 
 import plusIcon from '../../assets/images/plus.png'
-
-import { useDispatch, useSelector } from 'react-redux'
-import type { RootState } from '../../store'
-import { createAction } from '../../feature/todoList'
-import { clearValue, setValue } from '../../feature/formSlice'
+import { FormControl, FormField, FormInput, FormLabel, FormWrapper } from './Form.styled';
 
 export const Form = () => {
-  const dispatch = useDispatch()
-  const task = useSelector((state: RootState) => state.form.value)
+
+  const dispatch = useDispatch();
+  const task = useSelector((state: RootState) => state.form.value);
 
   const formSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault()
     if (task) {
-      dispatch(createAction(task))
-      dispatch(clearValue())
+      dispatch(createAction(task));
+      dispatch(clearValue());
     }
-  }
+  };
 
   return (
-    <FormField action="#" onSubmit={formSubmit}>
-      <FormLabel>
-        <FormInput
-          type="text"
-          value={task}
-          onChange={(event) => dispatch(setValue(event.target.value))}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              formSubmit(event);
-            }
-          }}
-        />
-        <FormControl $icon={plusIcon} />
-      </FormLabel>
-    </FormField>
-  )
-}
+    <FormWrapper>
+      <FormField
+        action='#'
+        onSubmit={formSubmit}>
+        <FormLabel>
+          <FormInput
+            type='text'
+            onChange={(event) => dispatch(setValue(event.target.value))}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                formSubmit(event);
+              }
+            }}
+            value={task}
+          />
+          <FormControl $icon={plusIcon} />
+        </FormLabel>
+      </FormField>
+    </FormWrapper>
+  );
+};

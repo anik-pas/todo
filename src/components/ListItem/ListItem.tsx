@@ -1,12 +1,12 @@
-import { Todo } from "../../models/todo-item"
-import { StyledLink } from './ListItem.styles'
+import type { ToDo } from '../../models/todo-item.interface.tsx';
+import { ListItemLink } from './ListItem.styled';
 
-export const ListItem = ({ todo }: { todo: Todo }) => {
+export const ListItem = ({ todo }: { todo: ToDo }) => {
   return (
-    <StyledLink
-      $isDone={todo.isDone}
-      target="_blank"
-      rel="noreferrer"
-      href={`/list/${todo.id}`}>{todo.text}</StyledLink>
-  )
-}
+    <ListItemLink
+      to={`/list/${todo.id}`}
+      $isDone={todo.isDone}>
+      {todo.text}{' '}
+    </ListItemLink>
+  );
+};

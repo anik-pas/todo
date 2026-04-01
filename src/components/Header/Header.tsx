@@ -1,19 +1,25 @@
-import { useDispatch } from 'react-redux'
-import { HeaderWrapper, Container, StyledNavLink, ToggleButton } from './Header.styles'
-import { toggleThemeAction } from '../../feature/themeList'
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  HeaderContainer,
+  HeaderLink,
+  HeaderWrapper,
+  ToggleThemeButton,
+} from './Header.styled';
+import { toggleThemeAction } from '../../feature/themeSlice';
+import type { RootState } from '../../store';
 
 export const Header = () => {
   const dispatch = useDispatch()
-
+  const currentTheme = useSelector((state: RootState) => state.themeList.theme)
   return (
     <HeaderWrapper>
-      <Container>
-        <StyledNavLink to="/">ToDo</StyledNavLink>
-        <StyledNavLink to="/list">List</StyledNavLink>
-        <ToggleButton onClick={() => dispatch(toggleThemeAction())}>
-          toggle
-        </ToggleButton>
-      </Container>
+      <HeaderContainer>
+        <HeaderLink to='/'>Home</HeaderLink>
+        <HeaderLink to='/list'>ToDo List</HeaderLink>
+        <ToggleThemeButton onClick={() => dispatch(toggleThemeAction())}>
+          {currentTheme.name === 'light' ? '🌙' : '🌞'}
+        </ToggleThemeButton>
+      </HeaderContainer>
     </HeaderWrapper>
-  )
-}
+  );
+};

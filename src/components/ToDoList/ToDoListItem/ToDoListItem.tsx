@@ -1,11 +1,11 @@
-import { Todo } from '../../../models/todo-item'
+import { ToDo } from '../../../models/todo-item.interface.tsx'
 import { ToDoItem, ToDoItemControl, ToDoItemControls, ToDoItemText } from './ToDoListItem.styled'
 
 import checkIcon from '../../../assets/images/check.png'
 import trashIcon from '../../../assets/images/trash.png'
 import uncheckIcon from '../../../assets/images/uncheck.png'
 
-export const ToDoListItem = (props: { toDoItem: Todo, updateToDo: Function, deleteTodo: Function }) => {
+export const ToDoListItem = (props: { toDoItem: ToDo, updateToDo: Function, deleteTodo: Function }) => {
   return (
     <ToDoItem>
       <ToDoItemText>{props.toDoItem.text}</ToDoItemText>

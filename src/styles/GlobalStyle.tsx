@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import normalize from "styled-normalize";
-import { Theme } from "../models/theme";
+import { Theme } from "../models/theme.interface";
 
 declare module "styled-components" {
     export interface DefaultTheme extends Theme { }
